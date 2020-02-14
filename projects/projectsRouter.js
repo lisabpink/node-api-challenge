@@ -6,11 +6,6 @@ const actionsDb = require("../data/helpers/actionModel.js");
 
 const router = express.Router();
 
-//!TEST
-// router.get("/", (req, res) => {
-//     res.send("projectsRouter working!")
-// });
-
 //!Get all projects
 router.get("/", (req, res) => {
   projectDb

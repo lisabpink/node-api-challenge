@@ -13,7 +13,7 @@ server.use("/api/projects", projectsRouter);
 server.use("/api/actions", actionsRouter);
 
 server.get("/", (req, res) => {
-    res.send("PUSH THROUGH THE PAIN!");
+  res.send("PUSH THROUGH THE PAIN!");
 });
 
-module.exports = server; 
+module.exports = server;
