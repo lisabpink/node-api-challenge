@@ -123,7 +123,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
-//! Ddelete a project
+//! Delete a project
 router.delete("/:id", (req, res) => {
     const id = req.params.id;
   
