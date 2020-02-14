@@ -94,7 +94,7 @@ router.put("/:id", (req, res) => {
 });
 
 //! Post new action
-router.post("/:id/actions", (req, res) => {
+router.post("/:id/actions", checkAction, (req, res) => {
   const body = req.body;
   const id = req.params.id;
   const newAction = { ...body, project_id: id };
@@ -102,17 +102,7 @@ router.post("/:id/actions", (req, res) => {
   actionsDb
     .insert(newAction)
     .then(action => {
-      if (!action) {
-        res.status(400).json({
-          message: "missing action data"
-        });
-      } else if (!action.description || !action.notes) {
-        res.status(400).json({
-          message: "missing required description and notes fields"
-        });
-      } else {
-        res.status(200).json({ action });
-      }
+        res.status(200).json({ action })
     })
     .catch(err => {
       res.status(500).json({
@@ -121,4 +111,18 @@ router.post("/:id/actions", (req, res) => {
     });
 });
 
+function checkAction(req, res, next) {
+    if (!req.body) {
+      res.status(400).json({
+        message: "missing data"
+      });
+    } else if (!req.body.description || !req.body.notes) {
+      res.status(400).json({
+        message: "missing fields"
+      });
+    } else {
+      next();
+    }
+  }
+  
 module.exports = router;
