@@ -6,12 +6,15 @@ const actionsRouter = require("./actions/actionsRouter.js");
 
 const server = express();
 
+const cors = require('cors')
+
 server.use(express.json());
 
 server.use("/api/projects", projectsRouter);
 
 server.use("/api/actions", actionsRouter);
 
+server.use(cors)
 server.get("/", (req, res) => {
   res.send("PUSH THROUGH THE PAIN!");
 });
